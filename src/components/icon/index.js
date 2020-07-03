@@ -1,10 +1,11 @@
 import React from "react";
-import { getKanjiIcon } from "../../lib/icon-loader";
+import SVG from "react-inlinesvg";
 
-const Icon = React.forwardRef(({ name, ...rest }, ref) => {
-  const IconComponent = getKanjiIcon(name);
-  //
-  return IconComponent ? <IconComponent ref={ref} {...rest} /> : null;
-});
+const Icon = React.forwardRef(({ name, ...rest }, ref) => (
+  <SVG
+    src={`${process.env.REACT_APP_S3_BASE_URL}/${name}.svg`}
+    innerRef={ref}
+  />
+));
 
 export default Icon;

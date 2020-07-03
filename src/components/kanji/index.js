@@ -31,7 +31,7 @@ const Kanji = ({ name, onReset, onPause }) => {
 
   return (
     <div className="kanji">
-      <Icon ref={svgRef} name={name} />
+      <Icon ref={svgRef} name={`${name}-jlect`} />
       <div className="controls">
         <button onClick={handlePause}>◼</button>
         <button onClick={handleReset}>⟳</button>

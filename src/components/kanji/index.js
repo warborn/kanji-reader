@@ -6,7 +6,7 @@ const noop = () => {};
 
 const Kanji = ({ name, onReset, onPause }) => {
   const svgRef = useRef(null);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(true);
 
   const handleReset = useCallback(() => {
     if (svgRef.current) {
@@ -31,7 +31,16 @@ const Kanji = ({ name, onReset, onPause }) => {
 
   return (
     <div className="kanji">
-      <Icon ref={svgRef} name={`${name}-jlect`} />
+      <Icon
+        ref={svgRef}
+        name={`${name}-jlect`}
+        onLoad={() => {
+          if (svgRef.current) {
+            svgRef.current.pauseAnimations();
+            svgRef.current.setCurrentTime(0);
+          }
+        }}
+      />
       <div className="controls">
         <button onClick={handlePause}>◼</button>
         <button onClick={handleReset}>⟳</button>
